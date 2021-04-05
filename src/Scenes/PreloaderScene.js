@@ -3,6 +3,9 @@ import logo from '../assets/logo.png';
 import blueButton1 from '../assets/ui/blue_button02.png';
 import blueButton2 from '../assets/ui/blue_button03.png';
 import phaserLogo from '../assets/logo.png';
+import greyBox from '../assets/ui/grey_box.png';
+import blueboxCheckmark from '../assets/ui/blue_boxCheckmark.png';
+import TownTheme from '../assets/TownTheme.mp3';
 
 export default class PreloaderScene extends Phaser.Scene {
   constructor () {
@@ -85,6 +88,9 @@ export default class PreloaderScene extends Phaser.Scene {
       this.load.image('blueButton1', blueButton1);
       this.load.image('blueButton2', blueButton2);
       this.load.image('phaserLogo', phaserLogo);
+      this.load.image('box', greyBox);
+      this.load.image('checkedBox', blueboxCheckmark);
+      this.load.audio('bgMusic', TownTheme);
   }  
 
   ready() {
