@@ -1,8 +1,8 @@
-import Phaser from 'phaser';
+import 'phaser';
 
 export default {
   type: Phaser.AUTO,
-  // parent: 'phaser-example',
+  parent: 'phaser-example',
   width: 800,
   height: 600
 };
