@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import logo from '../assets/logo.png';
+import preloaderScene from './PreloaderScene';
  
 export default class BootScene extends Phaser.Scene {
   constructor () {
@@ -11,6 +12,6 @@ export default class BootScene extends Phaser.Scene {
   }
  
   create () {
-    this.scene.start('Preloader');
+    this.scene.start(preloaderScene);
   }
 };

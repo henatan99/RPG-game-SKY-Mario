@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-import logo from '../assets/logo.png';
 import blueButton1 from '../assets/ui/blue_button02.png';
 import blueButton2 from '../assets/ui/blue_button03.png';
 import phaserLogo from '../assets/logo.png';
@@ -80,7 +79,7 @@ export default class PreloaderScene extends Phaser.Scene {
         loadingText.destroy();
         percentText.destroy();
         assetText.destroy();
-      });
+      }.bind(this));
 
       this.timedEvent = this.time.delayedCall(3000, this.ready, [], this);
 
@@ -91,7 +90,7 @@ export default class PreloaderScene extends Phaser.Scene {
       this.load.image('box', greyBox);
       this.load.image('checkedBox', blueboxCheckmark);
       this.load.audio('bgMusic', TownTheme);
-  }  
+  }
 
   ready() {
     this.readyCount += 1;
