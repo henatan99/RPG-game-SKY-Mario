@@ -79,7 +79,15 @@ export default class GameScene extends Phaser.Scene {
     function collectStar (player, star)
     {
         star.disableBody(true, true);
+        score += 10;
+        scoreText.setText('Score: ' + score);
     }
+
+    var score = 0;
+    var scoreText;
+
+    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+    
   }
 
   update () {
@@ -89,13 +97,13 @@ export default class GameScene extends Phaser.Scene {
 
     if (cursors.left.isDown)
     {
-        this.player.setVelocityX(-160);
+        this.player.setVelocityX(-260);
 
         this.player.anims.play('left', true);
     }
     else if (cursors.right.isDown)
     {
-        this.player.setVelocityX(160);
+        this.player.setVelocityX(260);
 
         this.player.anims.play('right', true);
     }
