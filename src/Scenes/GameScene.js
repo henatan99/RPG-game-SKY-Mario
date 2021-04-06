@@ -4,10 +4,13 @@ import platform from '../assets/WorldAssets/platform.png';
 import star from '../assets/WorldAssets/star.png';
 import dude from '../assets/WorldAssets/dude.png';
 import bomb from '../assets/WorldAssets/bomb.png';
+import PreloaderScene from './PreloaderScene';
 
 export default class GameScene extends Phaser.Scene {
   constructor () {
-    super('Game');  
+    super('Game');
+    this.score = 0;
+    this.gameOver = false;
   }
 
   preload () {
@@ -30,8 +33,8 @@ export default class GameScene extends Phaser.Scene {
     platforms.create(400, 568, 'ground').setScale(2).refreshBody();
 
     platforms.create(600, 400, 'ground');
-    platforms.create(50, 250, 'ground');
-    platforms.create(750, 220, 'ground');
+    platforms.create(50, 350, 'ground');
+    platforms.create(750, 320, 'ground');
 
 
     this.player = this.physics.add.sprite(100, 450, 'dude');
@@ -81,12 +84,57 @@ export default class GameScene extends Phaser.Scene {
         star.disableBody(true, true);
         score += 10;
         scoreText.setText('Score: ' + score);
+
+        if (this.stars.countActive(true) === 0)
+        {
+            this.stars.children.iterate(function (child) {
+
+                child.enableBody(true, child.x, 0, true, true);
+
+            });
+
+            var x = (this.player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+
+            var bomb = this.bombs.create(x, 16, 'bomb');
+            bomb.setBounce(1);
+            bomb.setCollideWorldBounds(true);
+            bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+
+        }
     }
 
     var score = 0;
     var scoreText;
+    var gameOverText;
 
     scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+    gameOverText = this.add.text(400, 300, 'Game Over', { fontSize: '64px', fill: '#000' });
+    gameOverText.setOrigin(0.5);
+    gameOverText.visible = false;
+
+    this.bombs = this.physics.add.group();
+
+    this.physics.add.collider(this.bombs, platforms);
+
+    this.physics.add.collider(this.player, this.bombs, hitBomb, null, this);
+
+
+    function hitBomb (player, bomb)
+    {
+        this.physics.pause();
+
+        this.player.setTint(0xff0000);
+
+        this.player.anims.play('turn');
+
+        this.gameOver = true;
+
+        gameOverText.visible = true;
+
+        this.input.on('pointerdown', () => this.scene.start('Preloader'));
+
+        // timedEvent = this.time.delayedCall(3000, this.scene.start('Preloader'), [], this.gameOver);
+    }
     
   }
 
