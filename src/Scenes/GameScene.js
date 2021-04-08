@@ -5,8 +5,9 @@ import star from '../assets/WorldAssets/star.png';
 import dude from '../assets/WorldAssets/dude.png';
 import bomb from '../assets/WorldAssets/bomb.png';
 import bat from '../assets/WorldAssets/bat.png';
+import moving_flat from '../assets/WorldAssets/moving_flat.png';
 import Player from '../GameObjects/Player';
-import PlatformGroup from '../GameObjects/Platforms';
+import { PlatformGroup, PlatformDynGroup } from '../GameObjects/Platforms';
 
 import PreloaderScene from './PreloaderScene';
 
@@ -21,6 +22,7 @@ export default class GameScene extends Phaser.Scene {
     // load images
     this.load.image('sky', sky);
     this.load.image('ground', platform);
+    this.load.image('moving_flat', moving_flat);
     this.load.image('star', star);
     this.load.image('bomb', bomb);
     this.load.spritesheet('dude', 
@@ -36,16 +38,8 @@ export default class GameScene extends Phaser.Scene {
   create () {
     this.add.image(400, 300, 'sky');
 
-    // var platforms = this.physics.add.staticGroup();
-
-    // platforms.create(400, 568, 'ground').setScale(2).refreshBody();
-
-    // platforms.create(600, 400, 'ground');
-    // platforms.create(50, 350, 'ground');
-    // platforms.create(750, 320, 'ground');
-
     this.platforms = PlatformGroup(this, 'ground');
-    // this.platforms.addPlatforms('ground');
+    this.movingPlatforms = PlatformDynGroup(this, 'moving_flat');
 
     this.player =  this.physics.add.existing(new Player(this, 100, 450));
     this.player.addSprite('dude');
