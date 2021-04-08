@@ -17,9 +17,7 @@ const PlatformDynGroup = function (game, group_img) {
 
     platforms.create(500, 350, group_img).setScale(0.1).refreshBody();
     platforms.create(100, 350, group_img).setScale(0.1).refreshBody();
-    // platforms.setGravityY(3000);
     platforms.children.iterate(function (child) {      
-        // child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
         child.setGravityY(10);
     });
     return platforms;
