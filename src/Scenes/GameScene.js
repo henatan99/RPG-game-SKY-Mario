@@ -4,6 +4,9 @@ import platform from '../assets/WorldAssets/platform.png';
 import star from '../assets/WorldAssets/star.png';
 import dude from '../assets/WorldAssets/dude.png';
 import bomb from '../assets/WorldAssets/bomb.png';
+import bat from '../assets/WorldAssets/bat.png';
+import Player from '../GameObjects/Player';
+
 import PreloaderScene from './PreloaderScene';
 
 export default class GameScene extends Phaser.Scene {
@@ -23,21 +26,31 @@ export default class GameScene extends Phaser.Scene {
         dude,
         { frameWidth: 32, frameHeight: 48 }
     );
+    this.load.spritesheet('bat', 
+      bat, 
+      { frameWidth: 32, frameHeight: 48}
+    )
   }
 
   create () {
     this.add.image(400, 300, 'sky');
 
     var platforms = this.physics.add.staticGroup();
+    var movingPlatforms = this.physics.add.group();
 
     platforms.create(400, 568, 'ground').setScale(2).refreshBody();
 
     platforms.create(600, 400, 'ground');
     platforms.create(50, 350, 'ground');
     platforms.create(750, 320, 'ground');
+    
+    this.player =  this.physics.add.existing(new Player(this, 100, 450));
+    this.player.addSprite('dude');
 
-
-    this.player = this.physics.add.sprite(100, 450, 'dude');
+    // this.player = this.physics.add.sprite(100, 450, 'dude');
+    this.bat = this.physics.add.sprite(120, 470, 'bat');
+    // set gravity for player 
+    this.player.setGravityY(10000);
 
     this.player.setBounce(0.2);
     this.player.setCollideWorldBounds(true);
@@ -62,18 +75,21 @@ export default class GameScene extends Phaser.Scene {
         repeat: -1
     });
 
+    
+
     this.physics.add.collider(this.player, platforms);  
     
     this.stars = this.physics.add.group({
       key: 'star',
       repeat: 11,
       setXY: { x: 12, y: 0, stepX: 70 }
-      });
-      
+    });
+    
+    
     this.stars.children.iterate(function (child) {
       
       child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-      
+      child.setGravityY(1000);
     });
 
     this.physics.add.collider(this.stars, platforms);
