@@ -6,6 +6,7 @@ import dude from '../assets/WorldAssets/dude.png';
 import bomb from '../assets/WorldAssets/bomb.png';
 import bat from '../assets/WorldAssets/bat.png';
 import Player from '../GameObjects/Player';
+import PlatformGroup from '../GameObjects/Platforms';
 
 import PreloaderScene from './PreloaderScene';
 
@@ -35,25 +36,23 @@ export default class GameScene extends Phaser.Scene {
   create () {
     this.add.image(400, 300, 'sky');
 
-    var platforms = this.physics.add.staticGroup();
-    var movingPlatforms = this.physics.add.group();
+    // var platforms = this.physics.add.staticGroup();
 
-    platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+    // platforms.create(400, 568, 'ground').setScale(2).refreshBody();
 
-    platforms.create(600, 400, 'ground');
-    platforms.create(50, 350, 'ground');
-    platforms.create(750, 320, 'ground');
-    
+    // platforms.create(600, 400, 'ground');
+    // platforms.create(50, 350, 'ground');
+    // platforms.create(750, 320, 'ground');
+
+    this.platforms = PlatformGroup(this, 'ground');
+    // this.platforms.addPlatforms('ground');
+
     this.player =  this.physics.add.existing(new Player(this, 100, 450));
     this.player.addSprite('dude');
-
-    // this.player = this.physics.add.sprite(100, 450, 'dude');
+    
     this.bat = this.physics.add.sprite(120, 470, 'bat');
-    // set gravity for player 
-    this.player.setGravityY(10000);
-
-    this.player.setBounce(0.2);
-    this.player.setCollideWorldBounds(true);
+    // set rules for player 
+    this.player.addRules();
 
     this.anims.create({
         key: 'left',
@@ -77,7 +76,7 @@ export default class GameScene extends Phaser.Scene {
 
     
 
-    this.physics.add.collider(this.player, platforms);  
+    this.physics.add.collider(this.player, this.platforms);
     
     this.stars = this.physics.add.group({
       key: 'star',
@@ -92,7 +91,7 @@ export default class GameScene extends Phaser.Scene {
       child.setGravityY(1000);
     });
 
-    this.physics.add.collider(this.stars, platforms);
+    this.physics.add.collider(this.stars, this.platforms);
     this.physics.add.overlap(this.player, this.stars, collectStar, null, this);
 
     function collectStar (player, star)
@@ -130,7 +129,7 @@ export default class GameScene extends Phaser.Scene {
 
     this.bombs = this.physics.add.group();
 
-    this.physics.add.collider(this.bombs, platforms);
+    this.physics.add.collider(this.bombs, this.platforms);
 
     this.physics.add.collider(this.player, this.bombs, hitBomb, null, this);
 

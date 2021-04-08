@@ -8,7 +8,13 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     // Add sprite from preload 
     addSprite (sprite) {
         this.setTexture(sprite);
-    }    
+    }
+    
+    addRules () {
+        this.setGravityY(10000);
+        this.setBounce(0.2);
+        this.setCollideWorldBounds(true);
+    }
 }
 
 export default Player
