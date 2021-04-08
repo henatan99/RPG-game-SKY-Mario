@@ -43,10 +43,10 @@ export default class GameScene extends Phaser.Scene {
 
     this.player =  this.physics.add.existing(new Player(this, 100, 450));
     this.player.addSprite('dude');
+    this.player.addRules();
     
     this.bat = this.physics.add.sprite(120, 470, 'bat');
-    // set rules for player 
-    this.player.addRules();
+    
 
     this.anims.create({
         key: 'left',
