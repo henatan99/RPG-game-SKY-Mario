@@ -9,7 +9,9 @@ import moving_flat from '../assets/WorldAssets/moving_flat.png';
 import Player from '../GameObjects/Player';
 import { PlatformGroup, PlatformDynGroup } from '../GameObjects/Platforms';
 import Bat from '../GameObjects/Bats';
-import StarGroup from '../GameObjects/Stars';
+import { StarGroup, setStarOverlap } from '../GameObjects/Stars';
+import Bombs from '../GameObjects/Bombs';
+
 
 import PreloaderScene from './PreloaderScene';
 
@@ -54,53 +56,21 @@ export default class GameScene extends Phaser.Scene {
     
     this.stars = StarGroup(this, 'star');
 
+    this.bombs =  this.physics.add.existing(new Bombs(this));
+
     this.physics.add.collider(this.player, this.platforms);
     
-    // this.stars = this.physics.add.group({
-    //   key: 'star',
-    //   repeat: 11,
-    //   setXY: { x: 12, y: 0, stepX: 70 }
-    // });
-    
-    
-    // this.stars.children.iterate(function (child) {
-      
-    //   child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-    //   child.setGravityY(1000);
-    // });
-
     this.physics.add.collider(this.stars, this.platforms);
-    this.physics.add.overlap(this.player, this.stars, collectStar, null, this);
-
-    function collectStar (player, star)
-    {
-        star.disableBody(true, true);
-        score += 10;
-        scoreText.setText('Score: ' + score);
-
-        if (this.stars.countActive(true) === 0)
-        {
-            this.stars.children.iterate(function (child) {
-
-                child.enableBody(true, child.x, 0, true, true);
-
-            });
-
-            var x = (this.player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-
-            var bomb = this.bombs.create(x, 16, 'bomb');
-            bomb.setBounce(1);
-            bomb.setCollideWorldBounds(true);
-            bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-
-        }
-    }
 
     var score = 0;
     var scoreText;
+    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+
+    setStarOverlap (this, this.player, this.stars, score, scoreText, this.bombs, 'bomb'); 
+
     var gameOverText;
 
-    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+    
     gameOverText = this.add.text(400, 300, 'Game Over', { fontSize: '64px', fill: '#000' });
     gameOverText.setOrigin(0.5);
     gameOverText.visible = false;
@@ -125,8 +95,6 @@ export default class GameScene extends Phaser.Scene {
         gameOverText.visible = true;
 
         this.input.on('pointerdown', () => this.scene.start('Preloader'));
-
-        // timedEvent = this.time.delayedCall(3000, this.scene.start('Preloader'), [], this.gameOver);
     }
     
   }
