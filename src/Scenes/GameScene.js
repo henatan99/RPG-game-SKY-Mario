@@ -6,6 +6,7 @@ import dude from '../assets/WorldAssets/dude.png';
 import bomb from '../assets/WorldAssets/bomb.png';
 import bat from '../assets/WorldAssets/bat.png';
 import goose from '../assets/WorldAssets/goose.png';
+import laser from '../assets/WorldAssets/shot.png';
 import moving_flat from '../assets/WorldAssets/moving_flat.png';
 import fire from '../assets/WorldAssets/animated_torch.gif';
 import background from '../assets/WorldAssets/Full-Moon-background.png';
@@ -14,7 +15,7 @@ import { PlatformGroup, PlatformDynGroup, FireFloor } from '../GameObjects/Platf
 import Bat from '../GameObjects/Bats';
 import { StarGroup, setStarOverlap } from '../GameObjects/Stars';
 import Bombs from '../GameObjects/Bombs';
-import Goose from '../GameObjects/Goose';
+import { Goose, GooseLaser } from '../GameObjects/Goose';
 
 
 import PreloaderScene from './PreloaderScene';
@@ -36,7 +37,7 @@ export default class GameScene extends Phaser.Scene {
     this.load.image('bomb', bomb);
     this.load.spritesheet('dude', 
         dude,
-        { frameWidth: 32, frameHeight: 48 }
+        { frameWidth: 15, frameHeight: 48 }
     );
     this.load.spritesheet('bat', 
       bat, 
@@ -47,6 +48,7 @@ export default class GameScene extends Phaser.Scene {
       { frameWidth: 70, frameHeight: 80}
     )
     this.load.image('fire', fire);
+    this.load.image('laser', laser);
   }
 
   create () {
