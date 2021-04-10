@@ -5,6 +5,7 @@ import star from '../assets/WorldAssets/star.png';
 import dude from '../assets/WorldAssets/dude.png';
 import bomb from '../assets/WorldAssets/bomb.png';
 import bat from '../assets/WorldAssets/bat.png';
+import goose from '../assets/WorldAssets/goose.png';
 import moving_flat from '../assets/WorldAssets/moving_flat.png';
 import fire from '../assets/WorldAssets/animated_torch.gif';
 import background from '../assets/WorldAssets/Full-Moon-background.png';
@@ -13,6 +14,7 @@ import { PlatformGroup, PlatformDynGroup, FireFloor } from '../GameObjects/Platf
 import Bat from '../GameObjects/Bats';
 import { StarGroup, setStarOverlap } from '../GameObjects/Stars';
 import Bombs from '../GameObjects/Bombs';
+import Goose from '../GameObjects/Goose';
 
 
 import PreloaderScene from './PreloaderScene';
@@ -40,6 +42,10 @@ export default class GameScene extends Phaser.Scene {
       bat, 
       { frameWidth: 32, frameHeight: 48}
     )
+    this.load.spritesheet('goose', 
+      goose, 
+      { frameWidth: 70, frameHeight: 80}
+    )
     this.load.image('fire', fire);
   }
 
@@ -54,6 +60,10 @@ export default class GameScene extends Phaser.Scene {
     this.player.addSprite('dude');
     this.player.addRules();
     this.player.addAnim('dude');
+
+    this.goose = this.physics.add.existing(new Goose(this, 450, 350));
+    this.goose.addSprite('goose');
+    this.goose.addRules();
 
     this.bat = this.physics.add.existing(new Bat(this, 120, 470));
     this.bat.addSprite('bat');
