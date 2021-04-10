@@ -1,13 +1,15 @@
 import 'phaser';
 import sky from '../assets/WorldAssets/sky.png';
-import platform from '../assets/WorldAssets/platform.png';
+import platform from '../assets/WorldAssets/flat.png';
 import star from '../assets/WorldAssets/star.png';
 import dude from '../assets/WorldAssets/dude.png';
 import bomb from '../assets/WorldAssets/bomb.png';
 import bat from '../assets/WorldAssets/bat.png';
 import moving_flat from '../assets/WorldAssets/moving_flat.png';
+import fire from '../assets/WorldAssets/animated_torch.gif';
+import background from '../assets/WorldAssets/Full-Moon-background.png';
 import Player from '../GameObjects/Player';
-import { PlatformGroup, PlatformDynGroup } from '../GameObjects/Platforms';
+import { PlatformGroup, PlatformDynGroup, FireFloor } from '../GameObjects/Platforms';
 import Bat from '../GameObjects/Bats';
 import { StarGroup, setStarOverlap } from '../GameObjects/Stars';
 import Bombs from '../GameObjects/Bombs';
@@ -25,6 +27,7 @@ export default class GameScene extends Phaser.Scene {
   preload () {
     // load images
     this.load.image('sky', sky);
+    this.load.image('background', background);
     this.load.image('ground', platform);
     this.load.image('moving_flat', moving_flat);
     this.load.image('star', star);
@@ -37,15 +40,17 @@ export default class GameScene extends Phaser.Scene {
       bat, 
       { frameWidth: 32, frameHeight: 48}
     )
+    this.load.image('fire', fire);
   }
 
   create () {
-    this.add.image(400, 300, 'sky');
+    this.add.image(400, 300, 'background');
 
     this.platforms = PlatformGroup(this, 'ground');
     this.movingPlatforms = PlatformDynGroup(this, 'moving_flat');
+    this.firefloor = FireFloor(this, 'fire');
 
-    this.player =  this.physics.add.existing(new Player(this, 100, 450));
+    this.player =  this.physics.add.existing(new Player(this, 600, 350));
     this.player.addSprite('dude');
     this.player.addRules();
     this.player.addAnim('dude');
@@ -66,7 +71,7 @@ export default class GameScene extends Phaser.Scene {
     var scoreText;
     scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 
-    setStarOverlap (this, this.player, this.stars, score, scoreText, this.bombs, 'bomb'); 
+    // setStarOverlap (this, this.player, this.stars, score, scoreText, this.bombs, 'bomb'); 
 
     var gameOverText;
 
@@ -75,31 +80,35 @@ export default class GameScene extends Phaser.Scene {
     gameOverText.setOrigin(0.5);
     gameOverText.visible = false;
 
-    this.bombs = this.physics.add.group();
+    // this.bombs = this.physics.add.group();
+ 
 
-    this.physics.add.collider(this.bombs, this.platforms);
+    // this.physics.add.collider(this.bombs, this.platforms);
 
-    this.physics.add.collider(this.player, this.bombs, hitBomb, null, this);
+    // this.physics.add.collider(this.player, this.bombs, hitBomb, null, this);
+
+    // this.bombs.hitBombAction(this, this.player, this.bombs, gameOverText);
 
 
-    function hitBomb (player, bomb)
-    {
-        this.physics.pause();
+    // function hitBomb (player, bomb)
+    // {
+    //     this.physics.pause();
 
-        this.player.setTint(0xff0000);
+    //     this.player.setTint(0xff0000);
 
-        this.player.anims.play('turn');
+    //     this.player.anims.play('turn');
 
-        this.gameOver = true;
+    //     this.gameOver = true;
 
-        gameOverText.visible = true;
+    //     gameOverText.visible = true;
 
-        this.input.on('pointerdown', () => this.scene.start('Preloader'));
-    }
+    //     this.input.on('pointerdown', () => this.scene.start('Preloader'));
+    // }
     
   }
 
   update () {
-    this.player.moveUpdates();  
+    this.player.moveUpdates();
+    this.bat.addAnim('bat');  
   }
 };

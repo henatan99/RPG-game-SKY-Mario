@@ -5,7 +5,7 @@ const StarGroup = function (game, sprite) {
         key: sprite,
         repeat: 11,
         setXY: { x: 12, y: 0, stepX: 70 }
-    });      
+    });       
       
     stars.children.iterate(function (child) {        
         child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
@@ -30,7 +30,7 @@ function setStarOverlap (game, Player, stars, score, scoreText, bombs, bombSprit
 
             });
 
-            bombs.release(Player, bombSprite); 
+            bombs.release(Player, bombs, bombSprite); 
             bombs.addRules();
         }
     }
