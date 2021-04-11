@@ -16,20 +16,40 @@ const PlatformGroup = function (game, group_img) {
 const PlatformDynGroup = function (game, group_img) {
     var platforms = game.physics.add.group();
 
-    platforms.create(500, 100, group_img).setScale(0.1).refreshBody();
-    platforms.create(100, 100, group_img).setScale(0.1).refreshBody();
+    platforms.create(500, 50, group_img).setScale(0.1).refreshBody();
+    platforms.create(300, 50, group_img).setScale(0.1).refreshBody();
+    platforms.create(100, 50, group_img).setScale(0.1).refreshBody();
     platforms.children.iterate(function (child) {      
         child.setVelocityY(10);
         child.setVelocityX(0);
         child.setImmovable(true);
 
 
-        var goose = game.physics.add.existing(new Goose(game, child.x, -20));
+        var goose = game.physics.add.existing(new Goose(game, child.x, child.y - 50));
         game.physics.add.collider(goose, child);
-        // game.physics.add.collider(goose, game.movingPlatforms);
         goose.setVelocityY(10);
+        var velX = 10;
         goose.addSprite('goose');
         goose.addRules();
+        
+        var dirTimer = game.time.addEvent({
+            delay: 1000,
+            callback: function() {
+              if (goose.x <= (child.x - 50) || goose.x >= (child.x + 50)) {
+                  velX = -velX;
+                  if (velX < 0) {
+                      goose.flipX = true;
+                  }
+                  else {
+                      goose.flipX = false;
+                  }                  
+              }
+              goose.setVelocityX(velX);          
+            },
+            
+            callbackScope: platforms,
+            loop: true
+        });
     });
     return platforms;
 }

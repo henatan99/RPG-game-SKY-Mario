@@ -3,7 +3,7 @@ import 'phaser'
 class Goose extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y) {
         super(scene, x, y, 'Texture', 'Frame', "Goose"); // The frame is optional
-        this.scene.add.existing(this);        
+        this.scene.add.existing(this); 
     }
     // Add sprite from preload 
     addSprite (sprite) {
@@ -29,6 +29,47 @@ class Goose extends Phaser.Physics.Arcade.Sprite {
             loop: true
         });
     }
+
+//     addAnim (sprite) {
+//         this.scene.anims.create({
+//             key: 'left',
+//             frames: this.scene.anims.generateFrameNumbers(sprite, { start: 0, end: 3 }),
+//             frameRate: 10,
+//             repeat: -1
+//         });
+    
+//         this.scene.anims.create({
+//             key: 'right',
+//             frames: this.anims.generateFrameNumbers(sprite, { start: 5, end: 8 }),
+//             frameRate: 10,
+//             repeat: -1
+//         });
+//     }
+
+//     moveUpdates(initX) {
+//         this.body.setVelocity(0);        
+
+//         if(this.x <= (initX - 10) )
+//         {
+//             this.setVelocityX(10);
+
+//             this.anims.play('left', true);
+//         }
+
+//         else if (this.x >= (initX + 10) )
+//         {
+//             this.setVelocityX(-10);
+
+//             this.anims.play('left', true);
+//         }
+//         else
+//         {
+//             this.setVelocityX(10);
+
+//             this.anims.play('right', true);
+//         }
+     
+//     }
 }
 
 class GooseLaser extends Phaser.GameObjects.Sprite {
