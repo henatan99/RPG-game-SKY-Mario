@@ -23,6 +23,8 @@ const PlatformDynGroup = function (game, group_img) {
         child.setVelocityY(10);
         child.setVelocityX(0);
         child.setImmovable(true);
+        child.setCollideWorldBounds(true);
+        child.setBounce(1, 1);
 
 
         var goose = game.physics.add.existing(new Goose(game, child.x, child.y - 50));
