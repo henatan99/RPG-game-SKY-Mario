@@ -22,54 +22,21 @@ class Goose extends Phaser.Physics.Arcade.Sprite {
                     this.x,
                     this.y
                 );            
-                this.scene.physics.add.existing(laser);            
+                this.scene.physics.add.existing(laser);
+                if (this.body.velocity.x >= 0) {
+                    laser.body.velocity.x = 200;
+                    laser.flipX = false; 
+                }
+                else {
+                    laser.body.velocity.x = -200;
+                    laser.flipX = true;
+                }                
             },
             
             callbackScope: this,
             loop: true
         });
     }
-
-//     addAnim (sprite) {
-//         this.scene.anims.create({
-//             key: 'left',
-//             frames: this.scene.anims.generateFrameNumbers(sprite, { start: 0, end: 3 }),
-//             frameRate: 10,
-//             repeat: -1
-//         });
-    
-//         this.scene.anims.create({
-//             key: 'right',
-//             frames: this.anims.generateFrameNumbers(sprite, { start: 5, end: 8 }),
-//             frameRate: 10,
-//             repeat: -1
-//         });
-//     }
-
-//     moveUpdates(initX) {
-//         this.body.setVelocity(0);        
-
-//         if(this.x <= (initX - 10) )
-//         {
-//             this.setVelocityX(10);
-
-//             this.anims.play('left', true);
-//         }
-
-//         else if (this.x >= (initX + 10) )
-//         {
-//             this.setVelocityX(-10);
-
-//             this.anims.play('left', true);
-//         }
-//         else
-//         {
-//             this.setVelocityX(10);
-
-//             this.anims.play('right', true);
-//         }
-     
-//     }
 }
 
 class GooseLaser extends Phaser.GameObjects.Sprite {
@@ -77,7 +44,7 @@ class GooseLaser extends Phaser.GameObjects.Sprite {
       super(scene, x, y, 'laser');      
       this.scene.add.existing(this);
       this.scene.physics.world.enableBody(this, 0);
-      this.body.velocity.x = 200;
+    //   this.body.velocity.x = 200;
       this.scale = 0.2;
     }
 }
