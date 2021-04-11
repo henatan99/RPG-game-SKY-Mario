@@ -14,8 +14,9 @@ import Player from '../GameObjects/Player';
 import { PlatformGroup, PlatformDynGroup, FireFloor } from '../GameObjects/Platforms';
 import Bat from '../GameObjects/Bats';
 import { StarGroup, setStarOverlap } from '../GameObjects/Stars';
-import Bombs from '../GameObjects/Bombs';
+// import Bombs from '../GameObjects/Bombs';
 import { Goose, GooseLaser } from '../GameObjects/Goose';
+import { gameOverConfig, gameIsOver } from '../GameObjects/GameOver';
 
 
 import PreloaderScene from './PreloaderScene';
@@ -55,7 +56,7 @@ export default class GameScene extends Phaser.Scene {
     this.add.image(400, 300, 'background');
 
     this.platforms = PlatformGroup(this, 'ground');    
-    this.movingPlatforms = PlatformDynGroup(this, 'moving_flat');
+    
     this.firefloor = FireFloor(this, 'fire');
 
     this.player =  this.physics.add.existing(new Player(this, 600, 350));
@@ -63,13 +64,16 @@ export default class GameScene extends Phaser.Scene {
     this.player.addRules();
     this.player.addAnim('dude');
 
+    this.movingPlatforms = PlatformDynGroup(this, 'moving_flat', this.player);
+
     this.bat = this.physics.add.existing(new Bat(this, 120, 470));
     this.bat.addSprite('bat');
     this.bat.addRules();  
     
     this.stars = StarGroup(this, 'star');
 
-    this.bombs =  this.physics.add.existing(new Bombs(this));
+    // this.bombs =  this.physics.add.existing(new Bombs(this));
+    
 
     this.physics.add.collider(this.player, this.platforms);
     this.physics.add.collider(this.player, this.movingPlatforms);
@@ -81,39 +85,36 @@ export default class GameScene extends Phaser.Scene {
     var scoreText;
     scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 
-    // setStarOverlap (this, this.player, this.stars, score, scoreText, this.bombs, 'bomb'); 
+    setStarOverlap (this, this.player, this.stars, score, scoreText);
 
-    var gameOverText;
+    gameOverConfig(this);
+    function game_is_over () {
+      return gameIsOver(this);
+    }
+
+    // var gameOverText;
 
     
-    gameOverText = this.add.text(400, 300, 'Game Over', { fontSize: '64px', fill: '#000' });
-    gameOverText.setOrigin(0.5);
-    gameOverText.visible = false;
+    // gameOverText = this.add.text(400, 300, 'Game Over', { fontSize: '64px', fill: '#000' });
+    // gameOverText.setOrigin(0.5);
+    // gameOverText.visible = false;
 
-    // this.bombs = this.physics.add.group();
- 
+    // function gameIsOver () {
+    //   this.physics.pause();
+    //   this.player.setTint(0xff0000);
+    //   this.player.anims.play('turn');
+    //   gameOverText.visible = true;
+    //   this.input.on('pointerdown', () => this.scene.start('Preloader'));
+    // }
 
-    // this.physics.add.collider(this.bombs, this.platforms);
-
-    // this.physics.add.collider(this.player, this.bombs, hitBomb, null, this);
+    this.physics.add.overlap(this.player, this.firefloor, game_is_over, null, this);
+    this.physics.add.overlap(this.player, this.bat, game_is_over, null, this);
+    
 
     // this.bombs.hitBombAction(this, this.player, this.bombs, gameOverText);
 
 
-    // function hitBomb (player, bomb)
-    // {
-    //     this.physics.pause();
-
-    //     this.player.setTint(0xff0000);
-
-    //     this.player.anims.play('turn');
-
-    //     this.gameOver = true;
-
-    //     gameOverText.visible = true;
-
-    //     this.input.on('pointerdown', () => this.scene.start('Preloader'));
-    // }
+    
     
   }
 

@@ -4,8 +4,8 @@ const StarGroup = function (game, sprite) {
     var stars = game.physics.add.group({
         key: sprite,
         repeat: 11,
-        setXY: { x: 12, y: 100, stepX: 70 }
-    });       
+        setXY: { x: 6, y: 150, stepX: 70, stepY: 10 }
+    });
       
     // stars.children.iterate(function (child) {        
     //     child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
@@ -22,17 +22,17 @@ function setStarOverlap (game, Player, stars, score, scoreText, bombs, bombSprit
         score += 10;
         scoreText.setText('Score: ' + score);
 
-        if (stars.countActive(true) === 0)
-        {
-            stars.children.iterate(function (child) {
+        // if (stars.countActive(true) === 0)
+        // {
+        //     stars.children.iterate(function (child) {
 
-                child.enableBody(true, child.x, 0, true, true);
+        //         child.enableBody(true, child.x, 0, true, true);
 
-            });
+        //     });
 
-            bombs.release(Player, bombs, bombSprite); 
-            bombs.addRules();
-        }
+        //     bombs.release(Player, bombs, bombSprite); 
+        //     bombs.addRules();
+        // }
     }
 }
 

@@ -1,5 +1,6 @@
 import 'phaser'
 import { Goose, GooseLaser} from './Goose';
+import { gameOverConfig, gameIsOver } from './GameOver';
 
 const PlatformGroup = function (game, group_img) {
 
@@ -11,7 +12,7 @@ const PlatformGroup = function (game, group_img) {
     return platforms;
 };
 
-const PlatformDynGroup = function (game, group_img) {
+const PlatformDynGroup = function (game, group_img, player) {
     var platforms = game.physics.add.group();
 
     platforms.create(500, 50, group_img).setScale(0.1).refreshBody();
@@ -33,6 +34,13 @@ const PlatformDynGroup = function (game, group_img) {
         var velX = 10;
         goose.addSprite('goose');
         goose.addRules();
+
+        gameOverConfig(game);
+        function game_is_over () {
+            return gameIsOver(game);
+        }
+
+        game.physics.add.overlap(player, goose, game_is_over, null, game);
         
         var dirTimer = game.time.addEvent({
             delay: 1000,
@@ -64,7 +72,7 @@ const FireFloor = function (game, group_img) {
         firefloor.create(x, 550, group_img);
         x += 20;
     }
-
+    return firefloor;
 }
 
 export { PlatformGroup, PlatformDynGroup, FireFloor }
