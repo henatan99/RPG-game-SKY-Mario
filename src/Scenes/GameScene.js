@@ -54,7 +54,7 @@ export default class GameScene extends Phaser.Scene {
   create () {
     this.add.image(400, 300, 'background');
 
-    this.platforms = PlatformGroup(this, 'ground');
+    this.platforms = PlatformGroup(this, 'ground');    
     this.movingPlatforms = PlatformDynGroup(this, 'moving_flat');
     this.firefloor = FireFloor(this, 'fire');
 
@@ -62,10 +62,6 @@ export default class GameScene extends Phaser.Scene {
     this.player.addSprite('dude');
     this.player.addRules();
     this.player.addAnim('dude');
-
-    this.goose = this.physics.add.existing(new Goose(this, 450, 350));
-    this.goose.addSprite('goose');
-    this.goose.addRules();
 
     this.bat = this.physics.add.existing(new Bat(this, 120, 470));
     this.bat.addSprite('bat');
@@ -77,6 +73,7 @@ export default class GameScene extends Phaser.Scene {
 
     this.physics.add.collider(this.player, this.platforms);
     this.physics.add.collider(this.player, this.movingPlatforms);
+    
     
     this.physics.add.collider(this.stars, this.platforms);
 

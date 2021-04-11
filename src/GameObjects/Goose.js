@@ -11,31 +11,18 @@ class Goose extends Phaser.Physics.Arcade.Sprite {
     }
 
     addRules () {
-        this.setGravityY(8);
-        // this.setBounce(0.2);
+        this.setGravityY(8);        
         this.setCollideWorldBounds(true);
-        const enemyLasers = this.scene.physics.add.group();
-        // enemyLasers.children.iterate(function (child) {      
-        //     child.setVeclocityX(10);
-        // });
+        const enemyLasers = this.scene.physics.add.group();        
         this.shootTimer = this.scene.time.addEvent({
             delay: 1000,
             callback: function() {
               var laser = new GooseLaser(
-                this.scene,
-                this.x,
-                this.y
-            );
-            // // var laser = this.scene.add.sprite(this.x, this.y);
-            // console.log(this);
-            // console.log(laser);
-            // console.log(laser.y);
-            // // laser.setTexture('laser').setScale(0.4).refreshBody();
-            // laser.setVelocityX(260);s
-            //   laser.addSprite(laser_sprite);
-            //   laser.addRules();
-            this.scene.physics.add.existing(laser);
-            // laser.setVeclocityX(260);
+                    this.scene,
+                    this.x,
+                    this.y
+                );            
+                this.scene.physics.add.existing(laser);            
             },
             
             callbackScope: this,
