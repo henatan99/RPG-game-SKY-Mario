@@ -37,11 +37,11 @@ export default class GameScene extends Phaser.Scene {
     this.load.image('bomb', bomb);
     this.load.spritesheet('dude', 
         dude,
-        { frameWidth: 15, frameHeight: 48 }
+        { frameWidth: 32, frameHeight: 48 }
     );
     this.load.spritesheet('bat', 
       bat, 
-      { frameWidth: 32, frameHeight: 48}
+      { frameWidth: 32, frameHeight: 30}
     )
     this.load.spritesheet('goose', 
       goose, 
@@ -76,6 +76,7 @@ export default class GameScene extends Phaser.Scene {
     this.bombs =  this.physics.add.existing(new Bombs(this));
 
     this.physics.add.collider(this.player, this.platforms);
+    this.physics.add.collider(this.player, this.movingPlatforms);
     
     this.physics.add.collider(this.stars, this.platforms);
 

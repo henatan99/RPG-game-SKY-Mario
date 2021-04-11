@@ -50,7 +50,7 @@ class GooseLaser extends Phaser.GameObjects.Sprite {
       this.scene.add.existing(this);
       this.scene.physics.world.enableBody(this, 0);
       this.body.velocity.x = 200;
-      this.scale = 0.1;
+      this.scale = 0.2;
     }
 }
 
