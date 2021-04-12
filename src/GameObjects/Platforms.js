@@ -7,18 +7,36 @@ const PlatformGroup = function (game, group_img) {
     var platforms = game.physics.add.staticGroup();
 
     platforms.create(600, 400, group_img).setScale(0.1).refreshBody();
-    platforms.create(50, 350, group_img).setScale(0.1).refreshBody();
+    platforms.create(0, 350, group_img).setScale(0.1).refreshBody();
     platforms.create(750, 320, group_img).setScale(0.1).refreshBody();
     return platforms;
 };
 
-const PlatformDynGroup = function (game, group_img, player) {
+const PlatformDynGroupFree = function (game, group_img) {
     var platforms = game.physics.add.group();
 
     platforms.create(500, 50, group_img).setScale(0.1).refreshBody();
-    platforms.create(300, 50, group_img).setScale(0.1).refreshBody();
     platforms.create(100, 50, group_img).setScale(0.1).refreshBody();
     platforms.create(200, 550, group_img).setScale(0.1).refreshBody();
+
+    platforms.children.iterate(function (child) {      
+        child.setVelocityY(10);
+        child.setVelocityX(0);
+        child.setImmovable(true);
+        child.setCollideWorldBounds(true);
+        child.setBounce(1, 1);
+    });
+
+    return platforms;
+}
+
+const PlatformDynGroup = function (game, group_img, player) {
+    var platforms = game.physics.add.group();
+
+    // platforms.create(500, 50, group_img).setScale(0.1).refreshBody();
+    platforms.create(300, 50, group_img).setScale(0.1).refreshBody();
+    // platforms.create(100, 50, group_img).setScale(0.1).refreshBody();
+    // platforms.create(200, 550, group_img).setScale(0.1).refreshBody();
     platforms.create(400, 550, group_img).setScale(0.1).refreshBody();
     platforms.children.iterate(function (child) {      
         child.setVelocityY(10);
@@ -75,4 +93,4 @@ const FireFloor = function (game, group_img) {
     return firefloor;
 }
 
-export { PlatformGroup, PlatformDynGroup, FireFloor }
+export { PlatformGroup, PlatformDynGroup, PlatformDynGroupFree, FireFloor }
