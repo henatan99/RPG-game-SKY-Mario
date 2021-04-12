@@ -1,6 +1,6 @@
 import 'phaser'
 // import setData from '../GameData/set.js';
-import send from '../GameData/set.js';
+import setData from '../GameData/set.js';
 
 function gameOverConfig (game) {
     var gameOverText;        
@@ -12,7 +12,8 @@ function gameOverConfig (game) {
 
 function gameIsOver (game) { 
     var gameOverText = gameOverConfig(game);
-    send("Henok", game.score);
+    var data = setData("Henok", game.score);
+    console.log(data);
 
     game.physics.pause();
     game.player.setTint(0xff0000);

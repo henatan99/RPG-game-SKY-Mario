@@ -26,7 +26,7 @@ import PreloaderScene from './PreloaderScene';
 export default class GameScene extends Phaser.Scene {
   constructor () {
     super('Game');
-    this.score = 0;
+    // this.score = 0;
     this.gameOver = false;
   }
 
@@ -83,11 +83,11 @@ export default class GameScene extends Phaser.Scene {
     this.physics.add.collider(this.player, this.freeMovingPlatforms);      
     this.physics.add.collider(this.stars, this.platforms);
 
-    var score = 0;
+    this.score = 0;
     var scoreText;
-    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+    scoreText = this.add.text(16, 16, this.score, { fontSize: '32px', fill: '#000' });
 
-    setStarOverlap (this, this.player, this.stars, this.bigStars, score, scoreText);
+    setStarOverlap (this, this.player, this.stars, this.bigStars, this.score, scoreText);
 
     gameOverConfig(this);
     function game_is_over () {

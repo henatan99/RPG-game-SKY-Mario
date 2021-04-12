@@ -22,19 +22,19 @@ function setStarOverlap (game, Player, stars, bigStars, score, scoreText) {
 
     function collectStar (player, star) { 
         star.disableBody(true, true);
-        score += 10;
-        scoreText.setText('Score: ' + score);
+        game.score += 10;
+        scoreText.setText('Score: ' + game.score);
     }
 
     function collectBigStar (player, bigstar) { 
         bigstar.disableBody(true, true);
-        score += 50;
-        scoreText.setText('Score: ' + score);
+        game.score += 50;
+        scoreText.setText('Score: ' + game.score);
         
         game.bigStars = bigStar(game, 'big_star', 800 - Player.x);        
         
         game.stars = StarGroup(game, 'star');
-        setStarOverlap (game, Player, stars, bigStars, score, scoreText);
+        setStarOverlap (game, Player, stars, bigStars, game.score, scoreText);
     }
     game.physics.add.overlap(game.player, game.bigStars, collectBigStar, null, game);
 }

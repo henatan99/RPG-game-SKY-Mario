@@ -5,6 +5,7 @@ import phaserLogo from '../assets/logo.png';
 import grey_box from '../assets/ui/grey_box.png';
 import blue_boxCheckmark from '../assets/ui/blue_boxCheckmark.png';
 import TownTheme_mp3 from '../assets/TownTheme.mp3';
+import getData from '../GameData/get';
 
 export default class PreloaderScene extends Phaser.Scene {
   constructor () {
@@ -100,5 +101,6 @@ export default class PreloaderScene extends Phaser.Scene {
     if (this.readyCount === 2) {
       this.scene.start('Title');
     }
+    // getData();
   }
 };

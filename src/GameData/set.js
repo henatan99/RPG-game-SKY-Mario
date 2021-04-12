@@ -1,23 +1,17 @@
+import axios from 'axios';
 import 'regenerator-runtime';
 
-let apiKey = 'Sjdkei2345sdhksa';
-async function send(name, score) {
-    const response = await fetch(`https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${apiKey}/scores/`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        user: name,
-        score: score,
-      }),
-    });
-    const data = await response.json();
-    return data;
-}
+const setUserScore = async (userData) => {
+  let apiKey = 'Gshfdski35839fhsflks';
+  const data = await axios.post(`https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${apiKey}/scores/`, userData)
+    .then(response => response.data).catch(error => error);
+  return data.result;
+};
 
-export default send
+const setData = async (playerName, playerScore) => {
+  const userData = { user: { name: playerName}, score: playerScore };
+  const message = await setUserScore(userData);
+  return message;
+};
 
-
-
+export default setData;
