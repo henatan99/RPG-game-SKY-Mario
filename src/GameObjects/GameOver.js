@@ -1,4 +1,6 @@
 import 'phaser'
+// import setData from '../GameData/set.js';
+import send from '../GameData/set.js';
 
 function gameOverConfig (game) {
     var gameOverText;        
@@ -10,11 +12,13 @@ function gameOverConfig (game) {
 
 function gameIsOver (game) { 
     var gameOverText = gameOverConfig(game);
+    send("Henok", game.score);
 
     game.physics.pause();
     game.player.setTint(0xff0000);
     game.player.anims.play('turn');
     gameOverText.visible = true;
+    
     game.input.on('pointerdown', () => game.scene.start('Preloader'));    
 }
 

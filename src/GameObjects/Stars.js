@@ -31,16 +31,7 @@ function setStarOverlap (game, Player, stars, bigStars, score, scoreText) {
         score += 50;
         scoreText.setText('Score: ' + score);
         
-        game.bigStars = bigStar(game, 'big_star', 800 - Player.x);
-        // if (Player.x >= 300) {
-        //     game.bigStars = bigStar(game, 'big_star', 10);
-        //     // setStarOverlap (game, Player, stars, bigStars, score, scoreText);
-        // }
-
-        // else {
-        //     game.bigstars = bigStar(game, 'big_star', 750);
-        //     // setStarOverlap (game, Player, stars, bigStars, score, scoreText)
-        // }
+        game.bigStars = bigStar(game, 'big_star', 800 - Player.x);        
         
         game.stars = StarGroup(game, 'star');
         setStarOverlap (game, Player, stars, bigStars, score, scoreText);

@@ -31,11 +31,6 @@ class Goose extends Phaser.Physics.Arcade.Sprite {
                     this.y
                 );            
                 this.scene.physics.add.existing(laser); 
-
-                // gameOverConfig(this.scene);
-                // function game_is_over () {
-                //     return gameIsOver(this.scene);
-                // }
                              
                 this.scene.physics.add.overlap(this.scene.player, laser, game_is_over, null, this);
 
