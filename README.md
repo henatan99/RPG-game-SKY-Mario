@@ -36,6 +36,7 @@ A game API with user generated keys is used to set and get player score when gam
 - When the player collects the big star at one end, then another big star will be created on the opposite wall, so sky mario needs to go back to the opposite wall again to achieve more score 
 - The player should keep sky mario away from enemies (goose, goose laser and bat).
 
+[Video Link](https://www.loom.com/share/84724bf0eb9649bdafd3518a81cc54c0)
 
 ## Live demo
 [Netlify](https://nostalgic-gates-d3f1b5.netlify.app/) 
