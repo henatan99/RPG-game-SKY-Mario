@@ -1,8 +1,8 @@
-# RPG-game : Night Mario
+# RPG-game : Sky Mario
 
 This is a Javascript Capstone project from Microverse Javascript curriculum. The project is building a web Game app using Phaser Game engine. The concept of inheritance is widely applied in this project, as it is required to extend defined classes fromm Phaser classes. 
 
-![screenshot](docs/sky-mario-min.gif)
+![screenshot](docs/sky-mario-gif-min.gif)
 
 ## Description 
 The game is a simpe famous mario like character Role Play Game (RPG), named Sky Mario. The sky mario character moves between two game world walls, by jumping from platform to platform and collects stars in his way, which adds score. 
@@ -60,7 +60,7 @@ The usage of this program is simple.
 ## Setup
 
 ### running with local server 
-- git clone https://github.com/henatan99/tweeter-redesign- 
+- git clone https://github.com/henatan99/RPG-game 
 ```bash
 npm run build
 ```
