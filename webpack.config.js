@@ -8,13 +8,13 @@ module.exports = {
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '',
+    // publicPath: '',
     // clean: true,
   },
-  // devtool: 'inline-source-map',
-  // devServer: {
-  //   contentBase: '.dist',
-  // },
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: 'dist',
+  },
   module: {
     rules: [
       {
