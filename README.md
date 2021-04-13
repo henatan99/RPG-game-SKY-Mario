@@ -37,9 +37,8 @@ A game API with user generated keys is used to set and get player score when gam
 - The player should keep sky mario away from enemies (goose, goose laser and bat).
 
 
-## Live demo [Heroku]
-https://polar-eyrie-60544.herokuapp.com/ 
-
+## Live demo
+[Netlify](https://nostalgic-gates-d3f1b5.netlify.app/) 
 ## Built With
 
 - Javascript
