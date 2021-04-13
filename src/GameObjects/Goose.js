@@ -17,7 +17,7 @@ class Goose extends Phaser.Physics.Arcade.Sprite {
     this.setCollideWorldBounds(true);
 
     function gameisOver() {
-      return gameIsOver(this.scene, userName);
+      return gameIsOver(this.scene, userName, this.scene.score);
     }
 
     this.shootTimer = this.scene.time.addEvent({

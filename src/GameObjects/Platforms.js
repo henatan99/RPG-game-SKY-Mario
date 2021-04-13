@@ -48,9 +48,8 @@ const PlatformDynGroup = function (game, groupImg, player, userName) {
     goose.addSprite('goose');
     goose.addRules(userName);
 
-    // gameOverConfig(game);
     function gameisOver() {
-      return gameIsOver(game, userName);
+      return gameIsOver(game, userName, game.score);
     }
 
     game.physics.add.overlap(player, goose, gameisOver, null, game);

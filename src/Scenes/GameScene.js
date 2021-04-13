@@ -51,6 +51,7 @@ export default class GameScene extends Phaser.Scene {
 
   create() {
     this.add.image(400, 300, 'background');
+    this.score = 0;
 
     this.platforms = PlatformGroup(this, 'ground');
     this.freeMovingPlatforms = PlatformDynGroupFree(this, 'moving_flat1');
@@ -78,15 +79,13 @@ export default class GameScene extends Phaser.Scene {
     this.physics.add.collider(this.player, this.freeMovingPlatforms);
     this.physics.add.collider(this.stars, this.platforms);
 
-    this.score = 0;
-
     const scoreText = this.add.text(16, 16, this.score, { fontSize: '32px', fill: '#000' });
 
 
     setStarOverlap(this, this.player, this.stars, this.bigStars, this.score, scoreText);
 
     function gameisOver() {
-      return gameIsOver(this, userName);
+      return gameIsOver(this, userName, this.score);
     }
 
     this.physics.add.overlap(this.player, this.firefloor, gameisOver, null, this);

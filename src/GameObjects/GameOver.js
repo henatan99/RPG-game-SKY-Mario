@@ -8,9 +8,12 @@ function gameOverConfig(game) {
   return gameOverText;
 }
 
-function gameIsOver(game, userName) {
+function gameIsOver(game, userName, score) {
   const gameOverText = gameOverConfig(game);
-  setData(userName, game.score);
+  game.add.text(100, 50, `Name : ${userName}`, { fontSize: '14px', fill: '#000' });
+  game.add.text(100, 100, `Score : ${score}`, { fontSize: '14px', fill: '#000' });
+
+  setData(userName, score);
 
   game.physics.pause();
   game.player.setTint(0xff0000);
