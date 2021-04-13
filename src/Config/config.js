@@ -12,4 +12,9 @@ export default {
       debug: false,
     },
   },
+  pixelArt: true,
+  roundPixels: true,
+  dom: {
+    createContainer: true,
+  },
 };
