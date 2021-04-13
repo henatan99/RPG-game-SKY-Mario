@@ -2,11 +2,10 @@ import Phaser from 'phaser';
 
 class Bat extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y) {
-    super(scene, x, y, 'Texture', 'Frame', 'Bat'); // The frame is optional
+    super(scene, x, y, 'Texture', 'Frame', 'Bat');
     this.scene.add.existing(this);
   }
 
-  // Add sprite from preload
   addSprite(sprite) {
     this.setTexture(sprite);
   }
@@ -28,6 +27,5 @@ class Bat extends Phaser.Physics.Arcade.Sprite {
     this.anims.play('fly', true);
   }
 }
-
 
 export default Bat;

@@ -2,6 +2,8 @@
 
 This is a Javascript Capstone project from Microverse Javascript curriculum. The project is building a web Game app using Phaser Game engine. The concept of inheritance is widely applied in this project, as it is required to extend defined classes fromm Phaser classes. 
 
+![screenshot](docs/sky-mario-min.gif)
+
 ## Description 
 The game is a simpe famous mario like character Role Play Game (RPG), named Sky Mario. The sky mario character moves between two game world walls, by jumping from platform to platform and collects stars in his way, which adds score. 
 
@@ -51,15 +53,20 @@ The usage of this program is simple.
 
 ### Prerequisites
 
-- Ruby
-- Rails 
+- Javascript 
+- Webpack 
+- Phaser  
 
 ## Setup
 
 ### running with local server 
 - git clone https://github.com/henatan99/tweeter-redesign- 
-- run 'npm run build'
-- run 'npm run start'
+```bash
+npm run build
+```
+```bash
+npm run start
+```
 
 **For console test demonstrations below**
 ```bash

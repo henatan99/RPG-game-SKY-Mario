@@ -1,4 +1,3 @@
-// import Phaser from 'phaser';
 import Goose from './Goose';
 import { gameOverConfig, gameIsOver } from './GameOver';
 

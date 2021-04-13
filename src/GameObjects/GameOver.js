@@ -1,4 +1,3 @@
-// import Phaser from 'phaser';
 import setData from '../GameData/set';
 
 function gameOverConfig(game) {

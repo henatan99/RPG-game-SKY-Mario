@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import zenvaLogo from '../assets/zenva_logo.png';
+import zenvaLogo from '../assets/skymario.png';
 
 export default class BootScene extends Phaser.Scene {
   constructor() {
@@ -11,6 +11,6 @@ export default class BootScene extends Phaser.Scene {
   }
 
   create() {
-    this.scene.start('Preloader');    
+    this.scene.start('Preloader');
   }
 }

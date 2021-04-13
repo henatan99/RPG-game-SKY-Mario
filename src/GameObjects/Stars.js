@@ -37,7 +37,6 @@ function setStarOverlap(game, Player, stars, bigStars, score, scoreText) {
   }
   game.physics.add.overlap(game.player, game.stars, collectStar, null, game);
   game.physics.add.overlap(game.player, game.bigStars, collectBigStar, null, game);
-  // game.physics.add.overlap(game.player, game.bigStars, collectBigStar, null, game);
 }
 
 
