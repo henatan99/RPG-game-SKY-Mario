@@ -34,7 +34,8 @@
   "scripts": {
     "test": "jest",
     "build": "webpack",
-    "start": "webpack serve --open"
+    "start": "webpack serve --open",
+    "heroku-prebuild": "npm install --dev"
   },
   "repository": {
     "type": "git",
