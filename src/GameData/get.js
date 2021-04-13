@@ -2,10 +2,9 @@ import axios from 'axios';
 import 'regenerator-runtime';
 
 const getGameResult = async () => {
-  let apiKey = 'Gshfdski35839fhsflks';
+  const apiKey = 'Gshfdski35839fhsflks';
   const data = await axios.get(`https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${apiKey}/scores/`)
-    .then(response => response.data.result).catch(error => error);
-    console.log(data);
+    .then((response) => response.data.result).catch((error) => error);
   return data;
 };
 
