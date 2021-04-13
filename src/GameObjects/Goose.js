@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { gameOverConfig, gameIsOver } from './GameOver';
+import { gameIsOver } from './GameOver';
 import GooseLaser from './GooseLaser';
 
 class Goose extends Phaser.Physics.Arcade.Sprite {
@@ -12,14 +12,12 @@ class Goose extends Phaser.Physics.Arcade.Sprite {
     this.setTexture(sprite).setScale(0.4).refreshBody();
   }
 
-  addRules() {
+  addRules(userName) {
     this.setGravityY(8);
     this.setCollideWorldBounds(true);
-    // const enemyLasers = this.scene.physics.add.group();
 
-    gameOverConfig(this.scene);
     function gameisOver() {
-      return gameIsOver(this.scene);
+      return gameIsOver(this.scene, userName);
     }
 
     this.shootTimer = this.scene.time.addEvent({

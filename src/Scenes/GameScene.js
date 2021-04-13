@@ -18,9 +18,7 @@ import {
 } from '../GameObjects/Platforms';
 import Bat from '../GameObjects/Bats';
 import { StarGroup, bigStar, setStarOverlap } from '../GameObjects/Stars';
-// import { Goose, GooseLaser } from '../GameObjects/Goose';
-import { gameOverConfig, gameIsOver } from '../GameObjects/GameOver';
-// import PreloaderScene from './PreloaderScene';
+import { gameIsOver } from '../GameObjects/GameOver';
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -64,7 +62,9 @@ export default class GameScene extends Phaser.Scene {
     this.player.addRules();
     this.player.addAnim('dude');
 
-    this.movingPlatforms = PlatformDynGroup(this, 'moving_flat', this.player);
+    const { userName } = this.sys.game.globals.model;
+
+    this.movingPlatforms = PlatformDynGroup(this, 'moving_flat', this.player, userName);
 
     this.bat = this.physics.add.existing(new Bat(this, 120, 470));
     this.bat.addSprite('bat');
@@ -82,11 +82,11 @@ export default class GameScene extends Phaser.Scene {
 
     const scoreText = this.add.text(16, 16, this.score, { fontSize: '32px', fill: '#000' });
 
+
     setStarOverlap(this, this.player, this.stars, this.bigStars, this.score, scoreText);
 
-    gameOverConfig(this);
     function gameisOver() {
-      return gameIsOver(this);
+      return gameIsOver(this, userName);
     }
 
     this.physics.add.overlap(this.player, this.firefloor, gameisOver, null, this);

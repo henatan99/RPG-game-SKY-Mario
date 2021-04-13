@@ -2,14 +2,15 @@ import setData from '../GameData/set';
 
 function gameOverConfig(game) {
   const gameOverText = game.add.text(400, 300, 'Game Over', { fontSize: '64px', fill: '#000' });
+
   gameOverText.setOrigin(0.5);
   gameOverText.visible = false;
   return gameOverText;
 }
 
-function gameIsOver(game) {
+function gameIsOver(game, userName) {
   const gameOverText = gameOverConfig(game);
-  setData('Henok', 10);
+  setData(userName, game.score);
 
   game.physics.pause();
   game.player.setTint(0xff0000);

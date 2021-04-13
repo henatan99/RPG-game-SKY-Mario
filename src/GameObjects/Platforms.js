@@ -1,5 +1,5 @@
 import Goose from './Goose';
-import { gameOverConfig, gameIsOver } from './GameOver';
+import { gameIsOver } from './GameOver';
 
 const PlatformGroup = function (game, groupImg) {
   const platforms = game.physics.add.staticGroup();
@@ -28,7 +28,7 @@ const PlatformDynGroupFree = function (game, groupImg) {
   return platforms;
 };
 
-const PlatformDynGroup = function (game, groupImg, player) {
+const PlatformDynGroup = function (game, groupImg, player, userName) {
   const platforms = game.physics.add.group();
 
   platforms.create(300, 50, groupImg).setScale(0.1).refreshBody();
@@ -46,11 +46,11 @@ const PlatformDynGroup = function (game, groupImg, player) {
     goose.setVelocityY(10);
     let velX = 10;
     goose.addSprite('goose');
-    goose.addRules();
+    goose.addRules(userName);
 
-    gameOverConfig(game);
+    // gameOverConfig(game);
     function gameisOver() {
-      return gameIsOver(game);
+      return gameIsOver(game, userName);
     }
 
     game.physics.add.overlap(player, goose, gameisOver, null, game);
