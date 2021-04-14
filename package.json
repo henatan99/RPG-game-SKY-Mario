@@ -33,7 +33,7 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "webpack",
+    "build": "webpack --mode development",
     "start": "webpack serve --open",
     "heroku-prebuild": "npm install --dev"
   },
