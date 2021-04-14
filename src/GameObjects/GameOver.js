@@ -13,14 +13,36 @@ function gameIsOver(game, userName, score) {
   game.add.text(100, 50, `Name : ${userName}`, { fontSize: '14px', fill: '#000' });
   game.add.text(100, 100, `Score : ${score}`, { fontSize: '14px', fill: '#000' });
 
-  setData(userName, score);
+  // setData(userName, score);
 
   game.physics.pause();
   game.player.setTint(0xff0000);
   game.player.anims.play('turn');
   gameOverText.visible = true;
 
-  game.input.on('pointerdown', () => game.scene.start('Preloader'));
+  const style = 'background: #0000FF; border: none; border-radius: 5px; color: #fff;';
+  const back = game.add.dom(350, 400, 'button', style, 'Back');
+  const restart = game.add.dom(350, 500, 'button', style, 'Restart');
+
+  back.scaleX = 1.5;
+  back.scaleY = 1.7;
+  back.addListener('click');
+
+  back.on('click', () => {
+    setData(userName, score);
+    game.scene.start('PreloaderScene');
+  });
+
+  restart.scaleX = 1.5;
+  restart.scaleY = 1.7;
+  restart.addListener('click');
+
+  restart.on('click', () => {
+    setData(userName, score);
+    game.scene.start('Game');
+  });
+
+  // game.input.on('pointerdown', () => game.scene.start('Preloader'));
 }
 
 export { gameOverConfig, gameIsOver };
