@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 
-const StarGroup = function (game, sprite) {
+function StarGroup(game, sprite) {
   const stars = game.physics.add.group({
     key: sprite,
     repeat: 6,
@@ -10,7 +10,7 @@ const StarGroup = function (game, sprite) {
   });
 
   return stars;
-};
+}
 
 function bigStar(game, groupImg, x = 10) {
   const bigStars = game.physics.add.group();
@@ -38,6 +38,5 @@ function setStarOverlap(game, Player, stars, bigStars, score, scoreText) {
   game.physics.add.overlap(game.player, game.stars, collectStar, null, game);
   game.physics.add.overlap(game.player, game.bigStars, collectBigStar, null, game);
 }
-
 
 export { StarGroup, bigStar, setStarOverlap };

@@ -1,16 +1,16 @@
 import Goose from './Goose';
 import { gameIsOver } from './GameOver';
 
-const PlatformGroup = function (game, groupImg) {
+function PlatformGroup(game, groupImg) {
   const platforms = game.physics.add.staticGroup();
 
   platforms.create(600, 400, groupImg).setScale(0.1).refreshBody();
   platforms.create(0, 350, groupImg).setScale(0.1).refreshBody();
   platforms.create(750, 320, groupImg).setScale(0.1).refreshBody();
   return platforms;
-};
+}
 
-const PlatformDynGroupFree = function (game, groupImg) {
+function PlatformDynGroupFree(game, groupImg) {
   const platforms = game.physics.add.group();
 
   platforms.create(500, 50, groupImg).setScale(0.1).refreshBody();
@@ -26,9 +26,9 @@ const PlatformDynGroupFree = function (game, groupImg) {
   });
 
   return platforms;
-};
+}
 
-const PlatformDynGroup = function (game, groupImg, player, userName) {
+function PlatformDynGroup(game, groupImg, player, userName) {
   const platforms = game.physics.add.group();
 
   platforms.create(300, 50, groupImg).setScale(0.1).refreshBody();
@@ -39,7 +39,6 @@ const PlatformDynGroup = function (game, groupImg, player, userName) {
     child.setImmovable(true);
     child.setCollideWorldBounds(true);
     child.setBounce(1, 1);
-
 
     const goose = game.physics.add.existing(new Goose(game, child.x, child.y - 50));
     game.physics.add.collider(goose, child);
@@ -73,9 +72,9 @@ const PlatformDynGroup = function (game, groupImg, player, userName) {
     });
   });
   return platforms;
-};
+}
 
-const FireFloor = function (game, groupImg) {
+function FireFloor(game, groupImg) {
   const firefloor = game.physics.add.staticGroup();
   let x = 0;
 
@@ -84,7 +83,7 @@ const FireFloor = function (game, groupImg) {
     x += 20;
   }
   return firefloor;
-};
+}
 
 export {
   PlatformGroup, PlatformDynGroup, PlatformDynGroupFree, FireFloor,

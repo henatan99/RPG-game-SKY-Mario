@@ -6,7 +6,6 @@ import greybox from '../assets/ui/grey_box.png';
 import blueboxCheckmark from '../assets/ui/blue_boxCheckmark.png';
 import TownThememp3 from '../assets/TownTheme.mp3';
 
-
 export default class PreloaderScene extends Phaser.Scene {
   constructor() {
     super('Preloader');

@@ -41,8 +41,6 @@ function gameIsOver(game, userName, score) {
     setData(userName, score);
     game.scene.start('Game');
   });
-
-  // game.input.on('pointerdown', () => game.scene.start('Preloader'));
 }
 
 export { gameOverConfig, gameIsOver };

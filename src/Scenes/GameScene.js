@@ -81,7 +81,6 @@ export default class GameScene extends Phaser.Scene {
 
     const scoreText = this.add.text(16, 16, this.score, { fontSize: '32px', fill: '#000' });
 
-
     setStarOverlap(this, this.player, this.stars, this.bigStars, this.score, scoreText);
 
     function gameisOver() {
