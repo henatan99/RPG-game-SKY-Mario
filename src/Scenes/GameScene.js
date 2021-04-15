@@ -51,7 +51,7 @@ export default class GameScene extends Phaser.Scene {
 
   create() {
     this.add.image(400, 300, 'background');
-    this.score = 0;
+    this.score = 1;
 
     this.platforms = PlatformGroup(this, 'ground');
     this.freeMovingPlatforms = PlatformDynGroupFree(this, 'moving_flat1');
