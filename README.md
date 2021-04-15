@@ -9,7 +9,9 @@ A phaser Game template is adapted from example codes. The tempate has different 
 - The Options Scene
 - The Preloader Scene 
 - The Title Scene
+
 The main work of this project is to add to the GameScene, and other important classes.
+
 - The GameScene
 - The InputScene
 - The ScoresScene 
