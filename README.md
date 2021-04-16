@@ -3,7 +3,7 @@
 This is a Javascript Capstone project from the Microverse Javascript curriculum. The project is building a web Game app using the Phaser Game engine. The concept of inheritance is widely applied in this project, as it is required to extend defined classes from Phaser classes. 
 
 ### Scenes 
-A phaser Game template is adapted from example codes. The tempate has different scenes: 
+A phaser Game template is adapted from example codes. The template has different scenes: 
 - The BootScene
 - The Credits Scene
 - The Options Scene
@@ -59,7 +59,7 @@ The bat is another object which has a fixed velocity and bounces on world bounds
 ![screenshot](src/assets/WorldAssets/bat.png)
 
 ### The stars
-The stars are fixed objects in the game. When the sky Mario collects them (overlap), scores will be added to the player. There are two big stars at the left and right walls of the game world. And both are created alternatively. If sky Mario collects the right big star, another big star on the left wall and another set of small stars throughout will be created, eventually. 
+The stars are fixed objects in the game. When the sky Mario collects them (overlap), scores will be added to the player. There are two big stars on the left and right walls of the game world. And both are created alternatively. If sky Mario collects the right big star, another big star on the left wall and another set of small stars throughout will be created, eventually. 
 
 ## Game API
 A game API with user-generated keys is used to send and receive data from a backend endpoint. 
